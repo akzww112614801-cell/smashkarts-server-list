@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smash Karts 部屋一覧</title>
+
+  <!-- ===== CSS ===== -->
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #141414;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .option {
+      display: block;
+      padding: 12px 20px;
+      margin: 10px 0;
+      background: #2a2a2a;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .option:hover {
+      background: #3a3a3a;
+    }
+    .description {
+      padding: 15px;
+      background: #1f1f1f;
+      border-radius: 8px;
+      line-height: 1.6;
+      display: none;
+      margin-bottom: 15px;
+    }
+    .description a {
+      color: #0a84ff;
+      text-decoration: none;
+    }
+    .description a:hover {
+      text-decoration: underline;
+    }
+    .add-server-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #28a745;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-bottom: 20px;
+      border: none;
+    }
+    .add-server-btn:hover {
+      background: #3ec75b;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background: #222;
+      color: #fff;
+    }
+    .submit-btn {
+      padding: 8px 14px;
+      background: #0a84ff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: #2a9cff;
+    }
+    .cancel-btn {
+      background: #888;
+      margin-left: 10px;
+    }
+    .cancel-btn:hover {
+      background: #aaa;
+    }
+    @media (max-width: 600px) {
+      .option, .description {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>Smash Karts 部屋一覧</header>
+
+<div class="container">
+
+  <div id="server-list">
+
+    <!-- 旗6戦 -->
+    <div class="server-item">
+      <div class="option" onclick="toggleDesc(this)">Smash Karts に遊びに行こう（旗6戦）</div>
+      <div class="description">
+        <p><strong>部屋:</strong> asia776074</p>
+        <p><strong>アリーナ:</strong> スカイアリーナ</p>
+        <p><strong>ルール:</strong> スノーボールしか使えないアリーナでチームと6つの旗を奪い合います。</p>
+        <a class="option" href="https://smashkarts.io/link/?mode=347177022&room=asia776074&arena=skyarena-showdown" target="_blank">参加する</a>
+      </div>
+    </div>
+
+    <!-- 複数人対戦 -->
+    <div class="server-item">
+      <div class="option" onclick="toggleDesc(this)">Smash Karts に遊びに行こう（複数人対戦）</div>
+      <div class="description">
+        <p><strong>部屋:</strong> asia755853</p>
+        <p><strong>アリーナ:</strong> スカイアリーナ</p>
+        <p><strong>ルール:</strong> 複数人で対戦する</p>
+        <a class="option" href="https://smashkarts.io/link/?mode=335546938&room=asia755853&arena=skyarena-showdown" target="_blank">参加する</a>
+      </div>
+    </div>
+
+    <!-- 最大難易度旗戦 -->
+    <div class="server-item">
+      <div class="option" onclick="toggleDesc(this)">Smash Karts に遊びに行こう（最大難易度旗戦）</div>
+      <div class="description">
+        <p><strong>部屋:</strong> asia711161</p>
+        <p><strong>アリーナ:</strong> スカイアリーナ</p>
+        <p><strong>ルール:</strong> 武器が使えないアリーナでチームと20の旗を奪い合います。</p>
+        <a class="option" href="https://smashkarts.io/link/?mode=344260670&room=asia711161&arena=skyarena-showdown" target="_blank">参加する</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 追加ボタン -->
+  <button class="add-server-btn" onclick="showForm()">サーバー追加</button>
+
+  <!-- 追加フォーム -->
+  <div id="form-container" style="display:none;">
+    <div class="form-group">
+      <input type="text" id="server-name" placeholder="サーバー名">
+    </div>
+    <div class="form-group">
+      <input type="text" id="server-link" placeholder="Smash Kartsリンク">
+    </div>
+    <div class="form-group">
+      <input type="text" id="server-arena" placeholder="アリーナ">
+    </div>
+    <div class="form-group">
+      <input type="text" id="server-rules" placeholder="ルール">
+    </div>
+    <button class="submit-btn" onclick="addServer()">追加</button>
+    <button class="submit-btn cancel-btn" onclick="cancelAdd()">キャンセル</button>
+  </div>
+
+</div>
+
+<!-- ===== JS ===== -->
+<script>
+  function toggleDesc(el) {
+    const desc = el.nextElementSibling;
+    desc.style.display = desc.style.display === "block" ? "none" : "block";
+  }
+
+  function showForm() {
+    document.getElementById("form-container").style.display = "block";
+  }
+
+  function cancelAdd() {
+    document.getElementById("form-container").style.display = "none";
+    document.getElementById("server-name").value = "";
+    document.getElementById("server-link").value = "";
+    document.getElementById("server-arena").value = "";
+    document.getElementById("server-rules").value = "";
+  }
+
+  function addServer() {
+    const name = document.getElementById("server-name").value;
+    const link = document.getElementById("server-link").value;
+    const arena = document.getElementById("server-arena").value;
+    const rules = document.getElementById("server-rules").value;
+
+    if (!name || !link) {
+      alert("サーバー名とリンクは必須！");
+      return;
+    }
+
+    const list = document.getElementById("server-list");
+    const div = document.createElement("div");
+    div.className = "server-item";
+    div.innerHTML = `
+      <div class="option" onclick="toggleDesc(this)">${name}</div>
+      <div class="description">
+        <p><strong>アリーナ:</strong> ${arena}</p>
+        <p><strong>ルール:</strong> ${rules}</p>
+        <a class="option" href="${link}" target="_blank">参加する</a>
+      </div>
+    `;
+    list.appendChild(div);
+    cancelAdd();
+  }
+</script>
+
+</body>
+</html>

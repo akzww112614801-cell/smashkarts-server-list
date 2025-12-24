@@ -1,0 +1,95 @@
+body {
+  font-family: sans-serif;
+  background: #141414;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #222;
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
+.container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+.option {
+  display: block;
+  padding: 12px 20px;
+  margin: 10px 0;
+  background: #2a2a2a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.option:hover {
+  background: #3a3a3a;
+}
+.description {
+  padding: 15px;
+  background: #1f1f1f;
+  border-radius: 8px;
+  line-height: 1.6;
+  display: none; /* 初期は折りたたむ */
+  margin-bottom: 15px;
+}
+.description a {
+  color: #0a84ff;
+  text-decoration: none;
+}
+.description a:hover {
+  text-decoration: underline;
+}
+.add-server-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-bottom: 20px;
+}
+.add-server-btn:hover {
+  background: #3ec75b;
+}
+.form-group {
+  margin-bottom: 10px;
+}
+.form-group input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background: #222;
+  color: #fff;
+}
+.submit-btn {
+  padding: 8px 12px;
+  background: #0a84ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.submit-btn:hover {
+  background: #2a9cff;
+}
+.cancel-btn {
+  background: #888;
+  margin-left: 10px;
+}
+.cancel-btn:hover {
+  background: #aaa;
+}
+@media (max-width: 600px) {
+  .option, .description {
+    font-size: 1rem;
+  }
+}
